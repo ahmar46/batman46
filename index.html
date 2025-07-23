@@ -1,101 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Batman</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Batman</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: yellow;
+      color: black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .menu-icon {
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 1002;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .menu-icon.opened::before {
+      content: '✖';
+    }
+
+    .menu-icon::before {
+      content: '☰';
+    }
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-weight: bold;
+      font-size: 26px;
+      z-index: 1001;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100vh;
+      width: 220px;
+      background-color: yellow;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 5px 0 20px rgba(0,0,0,0.5);
+      transition: left 0.4s ease;
+      z-index: 999;
+    }
+
+    .nav-links.active {
+      left: 0;
+    }
+
+    .nav-links a {
+      color: black;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: red;
+    }
+
+    /* Social Links (optional) */
+    .social {
+      margin-top: auto;
+    }
+
+    .social a {
+      margin-right: 10px;
+      color: black;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .social a:hover {
+      color: red;
+    }
+
+    /* Hero Section (just for example) */
+    .hero {
+      padding: 40px 20px;
+      text-align: center;
+      background: #00aaff;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: #000;
+    }
+
+    @media (min-width: 768px) {
+      .nav-links {
+        width: 250px;
+      }
+    }
+  </style>
+</head>
 <body>
 
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
-        <h1 class="logo">THE BATMAN</h1>
-        <nav class="nav-links" id="navLinks">
-            <a href="#">Home</a>
-            <a href="#vehicles">Vehicles</a>
-            <a href="#allies">Allies</a>
-            <a href="#villains">Villains</a>
-        </nav>
-    </header>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="menu-icon" id="menuIcon" onclick="toggleMenu()"></div>
+    <h1 class="logo">THE BATMAN</h1>
+    <nav class="nav-links" id="navLinks">
+      <a href="#">Home</a>
+      <a href="#vehicles">Vehicles</a>
+      <a href="#allies">Allies</a>
+      <a href="#villains">Villains</a>
+      <div class="social">
+        <a href="https://twitter.com" target="_blank">X</a>
+        <a href="https://instagram.com" target="_blank">IG</a>
+      </div>
+    </nav>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h2>I am Vengeance,<br>I am the Night,<br>I am Batman!</h2>
-            <p>
-                A dark protector of Gotham City, using intelligence, strength,<br>
-                and stealth to uphold justice in a corrupt world.
-            </p>
-        </div>
-        <div class="hero-image">
-            <img src="batman.png" alt="Batman" />
-        </div>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>I am Vengeance. I am the Night. I am Batman!</h2>
+    <p>Welcome to Gotham's protector’s official fan portal.</p>
+  </section>
 
-    <!-- Vehicles Section -->
-    <section id="vehicles" class="section">
-        <h2 class="section-title">Vehicles</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="batmobile.jpg" alt="Batmobile">
-                <p>THE BATMOBILE</p>
-            </div>
-            <div class="card">
-                <img src="batwing.jpg" alt="Batwing">
-                <p>BATWING</p>
-            </div>
-            <div class="card">
-                <img src="batcycle.jpg" alt="Batcycle">
-                <p>BATCYCLE</p>
-            </div>
-        </div>
-    </section>
+  <!-- Toggle Menu Script -->
+  <script>
+    const navLinks = document.getElementById('navLinks');
+    const menuIcon = document.getElementById('menuIcon');
 
-    <!-- Allies Section -->
-    <section id="allies" class="section" style="background-color:#00aaff;">
-        <h2 class="section-title">Allies & Team</h2>
-        <div class="grid">
-            <div class="card"><img src="robin.jpg" alt="Robin">
-                <p>ROBIN</p>
-            </div>
-            <div class="card"><img src="alfred.jpg" alt="Alfred">
-                <p>ALFRED</p>
-            </div>
-            <div class="card"><img src="batgirl.jpg" alt="Batgirl">
-                <p>BATGIRL</p>
-            </div>
-            <div class="card"><img src="nightwing.jpg" alt="Nightwing">
-                <p>NIGHTWING</p>
-            </div>
-        </div>
-        <button class="btn">Load More</button>
-    </section>
-
-    <!-- Villains Section -->
-    <section id="villains" class="section">
-        <h2 class="section-title">Villains Gallery</h2>
-        <div class="grid">
-            <div class="card"><img src="joker.jpg" alt="Joker">
-                <p>JOKER</p>
-            </div>
-            <div class="card"><img src="bane.jpg" alt="Bane">
-                <p>BANE</p>
-            </div>
-            <div class="card"><img src="riddler.jpg" alt="Riddler">
-                <p>RIDDLER</p>
-            </div>
-            <div class="card"><img src="penguin.jpg" alt="Penguin">
-                <p>PENGUIN</p>
-            </div>
-        </div>
-        <button class="btn">Load More</button>
-    </section>
-
+    function toggleMenu() {
+      navLinks.classList.toggle('active');
+      menuIcon.classList.toggle('opened');
+    }
+  </script>
 
 </body>
-
 </html>
